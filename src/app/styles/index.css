@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app {
+
+}
+
+.stage {
+  @apply mt-4;
+  @apply border border-neutral-500;
+}
