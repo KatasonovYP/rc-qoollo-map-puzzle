@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { useState } from 'react';
 import { Layer, Rect, Stage } from 'react-konva';
-import { KonvaEventObject } from 'konva/lib/Node';
+import { type KonvaEventObject } from 'konva/lib/Node';
 
 const PUZZLE_SIZE = 100;
 const COUNT_X = 10;
@@ -96,4 +96,3 @@ export const GameBoard: FC = () => {
 		</Stage>
 	);
 };
-

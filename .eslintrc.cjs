@@ -15,7 +15,7 @@ module.exports = {
 		// imports
 		'import/default': 0,
 		'import/no-default-export': 1,
-		'import/no-unresolved': 2,
+		// 'import/no-unresolved': 2,
 
 		//variables
 		'prefer-const': 1,
@@ -86,7 +86,7 @@ module.exports = {
 		],
 		'unicorn/no-null': 0,
 		'unicorn/no-useless-undefined': 0,
-		'unicorn/prevent-abbreviations': 1,
+		'unicorn/prevent-abbreviations': 0,
 		'unicorn/consistent-function-scoping': 1,
 		'unicorn/no-for-loop': 1,
 		// "unicorn/no-negated-condition": 0,
