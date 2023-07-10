@@ -1,100 +1,70 @@
 import type { FC } from 'react';
-import { useState } from 'react';
-import { Layer, Rect, Stage } from 'react-konva';
-import { KonvaEventObject } from 'konva/lib/Node';
-
-const PUZZLE_SIZE = 100;
-const COUNT_X = 10;
-const COUNT_Y = 5;
-
-function snap(position: number) {
-	const cell = PUZZLE_SIZE;
-	return Math.round(position / cell) * cell;
-}
-
-function generateShapes() {
-	return [...Array(10)].map((_, i) => ({
-		id: i.toString(),
-		x: snap(Math.random() * PUZZLE_SIZE * (COUNT_X - 1)),
-		y: snap(Math.random() * PUZZLE_SIZE * (COUNT_Y - 1)),
-		isDragging: false,
-	}));
-}
-
-const INITIAL_STATE = generateShapes();
+import { GameBoard } from '../shared/components/game-board/ui/game-board';
+import { Text } from '../shared/components/text/ui/text';
+import { Button } from '../shared/components/button';
+import { FlexContainer } from '../shared/components/flex-container/ui/flex-container';
+import { Logo } from '../shared/components/image';
+import { Link } from '../shared/components/link';
+import { HeroImage } from '../shared/components/hero-image';
+import MoscowMap from '../shared/assets/images/moscow_map.png';
+import BostonMap from '../shared/assets/images/boston_map.png';
+import RomeMap from '../shared/assets/images/rome_map.png';
+import ParisMap from '../shared/assets/images/paris _map.png';
 
 const App: FC = () => {
-	const [stars, setStars] = useState(INITIAL_STATE);
-
-	const handleDragStart = (event: KonvaEventObject<DragEvent>): void => {
-		const id = event.target.id();
-		setStars(
-			stars.map((star) => {
-				return {
-					...star,
-					isDragging: star.id === id,
-				};
-			}),
-		);
-	};
-	const handleDragEnd = (event: KonvaEventObject<DragEvent>) => {
-		const id = event.target.id();
-		setStars(
-			stars.map((star, index) => {
-				if (+id === index) {
-					const x = event.target.x();
-					const y = event.target.y();
-					if (snap(x) !== star.x) {
-						return {
-							...star,
-							x: snap(x),
-							y: snap(y),
-							isDragging: false,
-						};
-					}
-				}
-				return {
-					...star,
-					isDragging: false,
-				};
-			}),
-		);
-	};
-
 	return (
-		<Stage
-			className={'stage'}
-			width={PUZZLE_SIZE * COUNT_X}
-			height={PUZZLE_SIZE * COUNT_Y}
-		>
-			<Layer>
-				{stars.map((star) => {
-					return (
-						<Rect
-							key={star.id}
-							id={star.id}
-							x={snap(star.x)}
-							y={star.y}
-							width={PUZZLE_SIZE}
-							height={PUZZLE_SIZE}
-							fill='#88f'
-							opacity={0.8}
-							draggable
-							shadowColor='black'
-							shadowBlur={10}
-							shadowOpacity={0.6}
-							shadowOffsetX={star.isDragging ? 10 : 5}
-							shadowOffsetY={star.isDragging ? 10 : 5}
-							scaleX={star.isDragging ? 1.2 : 1}
-							scaleY={star.isDragging ? 1.2 : 1}
-							onDragStart={handleDragStart}
-							onDragEnd={handleDragEnd}
-						/>
-					);
-				})}
-			</Layer>
-		</Stage>
+		<FlexContainer element='page'>
+			<FlexContainer element='header'>
+				<Logo></Logo>
+				<FlexContainer element='navigation'>
+					<Link>Maps</Link>
+					<Link>Leaderboards</Link>
+					<Link>About us</Link>
+				</FlexContainer>
+				<FlexContainer element='button'>
+					<Button rounded='free'>Log in</Button>
+					<Button rounded='start'>Sign up</Button>
+				</FlexContainer>
+			</FlexContainer>
+			<FlexContainer element='hero'>
+				<FlexContainer element='hero-content'>
+					<Text size='xl'>
+						qoollo <br /> map_.. <br /> puzzle
+					</Text>
+					<Text size='md'>
+						Get to know your city — <br /> get around without maps
+					</Text>
+					<FlexContainer element='button'>
+						<Button rounded='start'>Get started</Button>
+						<Button rounded='free'>It's free</Button>
+					</FlexContainer>
+				</FlexContainer>
+				<div>
+					<FlexContainer element='hero-image'>
+						<HeroImage
+							src={MoscowMap}
+							alt='Moscow map'
+						></HeroImage>
+						<HeroImage
+							src={BostonMap}
+							alt='Boston map'
+						></HeroImage>
+					</FlexContainer>
+					<FlexContainer element='hero-image'>
+						<HeroImage
+							src={RomeMap}
+							alt='Rome map'
+						></HeroImage>
+						<HeroImage
+							src={ParisMap}
+							alt='Paris map'
+						></HeroImage>
+					</FlexContainer>
+				</div>
+			</FlexContainer>
+		</FlexContainer>
 	);
 };
 
 export default App;
+

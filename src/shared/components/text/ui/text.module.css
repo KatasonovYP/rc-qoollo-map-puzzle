@@ -1,0 +1,19 @@
+.text {
+	color: #000;
+	font-style: normal;
+	line-height: normal;
+    font-family: Montserrat;
+}
+
+.md {
+	font-size: 20px;
+	font-weight: 400;
+}
+
+.xl {
+	font-size: 64px;
+	font-weight: 600;
+}
+
+
+

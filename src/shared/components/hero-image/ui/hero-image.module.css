@@ -1,0 +1,7 @@
+.heroImage {
+	width: 150px;
+	height: 200px;
+	flex-shrink: 0;
+	border-radius: 12px;
+	background: lightgray 50% / cover no-repeat;
+}
