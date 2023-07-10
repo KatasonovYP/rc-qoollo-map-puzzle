@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { FlexContainer } from 'shared/components/flex-container/ui/flex-container.tsx';
-import { Logo } from 'shared/components/image';
+import { Logo } from 'shared/components/logo';
 import { Link } from 'shared/components/link';
 import { Button } from 'shared/components/button';
 import { Text } from 'shared/components/text';
@@ -39,7 +39,7 @@ export const Landing: FC = () => {
 					</FlexContainer>
 				</FlexContainer>
 				<div>
-					<FlexContainer element='hero-image'>
+					<FlexContainer element='hero-logo'>
 						<HeroImage
 							src={MoscowMap}
 							alt='Moscow map'
@@ -49,7 +49,7 @@ export const Landing: FC = () => {
 							alt='Boston map'
 						></HeroImage>
 					</FlexContainer>
-					<FlexContainer element='hero-image'>
+					<FlexContainer element='hero-logo'>
 						<HeroImage
 							src={RomeMap}
 							alt='Rome map'

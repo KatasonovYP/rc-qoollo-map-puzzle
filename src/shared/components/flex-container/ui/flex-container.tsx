@@ -1,8 +1,15 @@
-import { FC, ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 import cls from './flex-container.module.css';
 
 interface FlexContainerProps {
-	element: 'button' | 'hero-content' | 'hero-image' | 'hero' | 'header' | 'navigation' | 'page';
+	element:
+		| 'button'
+		| 'hero-content'
+		| 'hero-logo'
+		| 'hero'
+		| 'header'
+		| 'navigation'
+		| 'page';
 	children: ReactNode;
 }
 
