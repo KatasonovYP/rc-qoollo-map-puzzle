@@ -21,21 +21,55 @@ export const Landing: FC = () => {
 					<Link>About us</Link>
 				</FlexContainer>
 				<FlexContainer element='button'>
-					<Button rounded='free'>Log in</Button>
-					<Button rounded='start'>Sign up</Button>
+					<Button rounded='free'>
+						<Text
+							size='sm'
+							color='black'
+						>
+							Log in
+						</Text>
+					</Button>
+					<Button rounded='start'>
+						<Text
+							size='sm'
+							color='white'
+						>
+							Sign up
+						</Text>
+					</Button>
 				</FlexContainer>
 			</FlexContainer>
 			<FlexContainer element='hero'>
 				<FlexContainer element='hero-content'>
-					<Text size='xl'>
+					<Text
+						size='xl'
+						color='black'
+					>
 						qoollo <br /> map_.. <br /> puzzle
 					</Text>
-					<Text size='md'>
+					<Text
+						size='md'
+						color='black'
+					>
 						Get to know your city — <br /> get around without maps
 					</Text>
 					<FlexContainer element='button'>
-						<Button rounded='start'>Get started</Button>
-						<Button rounded='free'>It's free</Button>
+						<Button rounded='start'>
+							<Text
+								size='sm'
+								color='white'
+							>
+								Get started
+							</Text>
+						</Button>
+						<Button rounded='free'>
+							<Text
+								size='sm'
+								color='black'
+							>
+								It's free
+							</Text>
+						</Button>
 					</FlexContainer>
 				</FlexContainer>
 				<div>
@@ -64,3 +98,4 @@ export const Landing: FC = () => {
 		</FlexContainer>
 	);
 };
+
