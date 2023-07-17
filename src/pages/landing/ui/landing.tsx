@@ -2,9 +2,11 @@ import type { FC } from 'react';
 import { FlexContainer } from 'shared/components/flex-container/ui/flex-container.tsx';
 import { Logo } from 'shared/components/logo';
 import { Link } from 'shared/components/link';
-import { Button } from 'shared/components/button';
+import { StartButton } from 'shared/components/start-button';
+import { DisabledButton } from 'shared/components/disabled-button';
 import { Text } from 'shared/components/text';
 import { HeroImage } from 'shared/components/hero-image';
+import { AuthContainer } from 'shared/components/auth-container';
 import MoscowMap from 'shared/assets/images/moscow_map.png';
 import BostonMap from 'shared/assets/images/boston_map.png';
 import RomeMap from 'shared/assets/images/rome_map.png';
@@ -20,24 +22,7 @@ export const Landing: FC = () => {
 					<Link>Leaderboards</Link>
 					<Link>About us</Link>
 				</FlexContainer>
-				<FlexContainer element='button'>
-					<Button rounded='free'>
-						<Text
-							size='sm'
-							color='black'
-						>
-							Log in
-						</Text>
-					</Button>
-					<Button rounded='start'>
-						<Text
-							size='sm'
-							color='white'
-						>
-							Sign up
-						</Text>
-					</Button>
-				</FlexContainer>
+				<AuthContainer />
 			</FlexContainer>
 			<FlexContainer element='hero'>
 				<FlexContainer element='hero-content'>
@@ -54,22 +39,22 @@ export const Landing: FC = () => {
 						Get to know your city — <br /> get around without maps
 					</Text>
 					<FlexContainer element='button'>
-						<Button rounded='start'>
+						<StartButton>
 							<Text
 								size='sm'
 								color='white'
 							>
 								Get started
 							</Text>
-						</Button>
-						<Button rounded='free'>
+						</StartButton>
+						<DisabledButton>
 							<Text
 								size='sm'
 								color='black'
 							>
 								It's free
 							</Text>
-						</Button>
+						</DisabledButton>
 					</FlexContainer>
 				</FlexContainer>
 				<div>

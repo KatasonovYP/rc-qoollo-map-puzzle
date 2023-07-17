@@ -1,19 +1,9 @@
-.button {
+.start_button {
 	display: flex;
 	padding: 24px 36px;
 	justify-content: center;
 	align-items: center;
 	gap: 10px;
-}
-
-.start {
 	border-radius: 12px;
 	background: #000;
 }
-
-.free {
-	border-color: #000;
-	border-width: 1px;
-	border-radius: 12px;
-}
-
