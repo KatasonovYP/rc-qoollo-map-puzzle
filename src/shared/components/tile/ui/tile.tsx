@@ -8,10 +8,10 @@ export interface TileProps {
 	id: string;
 	x: number;
 	y: number;
-	queue: number;
-	valid: boolean;
-	url: string;
-	isDragging: boolean;
+	queue: number; // if = 0, then active. 1, 2, 3, 4 placed in feed
+	valid: boolean; // is on right place. Checked from backend
+	url: string; // image url
+	isDragging: boolean; // using for effects on dragging
 }
 export const Tile: FC<TileProps> = (props) => {
 	const { id, x, y, url, isDragging, valid, queue } = props;

@@ -1,7 +1,7 @@
 import type { KonvaEventObject } from 'konva/lib/Node';
 import { useGameBoardStore } from './game-board-store.ts';
 import { snap } from 'shared/lib/snap.ts';
-import { TILE_SIZE } from 'shared/config/game/game.ts';
+import { SAFE_POSITION, TILE_SIZE } from 'shared/config/game/game.ts';
 import { checkPlacement } from 'shared/lib/check-placement.ts';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/route/route.tsx';
@@ -20,8 +20,8 @@ export function useDrag() {
 				if (id === tile.id) {
 					return {
 						...tile,
-						x: -1000, // fix visual bug + fix near snap bug
-						y: -1000, // fix visual bug + fix near snap bug
+						x: SAFE_POSITION, // fix visual bug + fix near snap bug
+						y: SAFE_POSITION, // fix visual bug + fix near snap bug
 						queue: 0,
 						isDragging: !tile.valid,
 					};
@@ -34,8 +34,7 @@ export function useDrag() {
 	async function handleDragEnd(event: KonvaEventObject<DragEvent>) {
 		const id = event.target.id();
 		event.target.moveToTop();
-		const x = snap(event.target.x());
-		const y = snap(event.target.y());
+		const { x, y } = snap(event.target.x(), event.target.y());
 		const position = getPosition(x, y);
 		const { valid, ended } = await checkPlacement(sessionId, id, position);
 		if (valid) {
