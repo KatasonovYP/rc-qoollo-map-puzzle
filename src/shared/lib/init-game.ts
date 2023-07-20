@@ -9,25 +9,38 @@ interface initGameReturnType {
 }
 
 export async function initGame(): Promise<initGameReturnType> {
-	const response = await axios.put(`${BACKEND_URL}/game/session/`, {
-		id: '64b02417767b7b027207e2cc',
-	});
+	try {
+		const mapResponse = await axios.get(`${BACKEND_URL}/map/`, {
+			params: { api: 'osm', geotag: 'Москва', scale: 'PROVINCE' },
+		});
+		const mapId: string = mapResponse.data[0].id;
 
-	const sessionId = response.data.id;
+		const sessionResponse = await axios.put(
+			`${BACKEND_URL}/game/session/`,
+			{
+				id: mapId,
+			},
+		);
 
-	const tiles = response.data.tiles.map(
-		(tileId: string, sequenceNumber: number): TileProps => ({
-			id: tileId,
-			x: TILE_SIZE * -2,
-			y: sequenceNumber * TILE_SIZE,
-			queue: sequenceNumber + 1,
-			// x: snap(Math.random() * TILE_SIZE * (BOARD_SIDE - 1)),
-			// y: snap(Math.random() * TILE_SIZE * (BOARD_SIDE - 1)),
-			url: `${BACKEND_URL}/tile/${tileId}`,
-			isDragging: false,
-			valid: false,
-		}),
-	);
+		const sessionId = sessionResponse.data.id;
 
-	return { tiles, sessionId };
+		const tiles = sessionResponse.data.tiles.map(
+			(tileId: string, sequenceNumber: number): TileProps => ({
+				id: tileId,
+				x: TILE_SIZE * -2,
+				y: sequenceNumber * TILE_SIZE,
+				queue: sequenceNumber + 1,
+				// x: snap(Math.random() * TILE_SIZE * (BOARD_SIDE - 1)),
+				// y: snap(Math.random() * TILE_SIZE * (BOARD_SIDE - 1)),
+				url: `${BACKEND_URL}/tile/${tileId}`,
+				isDragging: false,
+				valid: false,
+			}),
+		);
+
+		return { tiles, sessionId };
+	} catch (error) {
+		console.error(error);
+		throw new Error('init error');
+	}
 }
