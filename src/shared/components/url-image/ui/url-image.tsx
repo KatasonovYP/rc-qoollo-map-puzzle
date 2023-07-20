@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import useImage from 'use-image';
 import { Image } from 'react-konva';
-import { TILE_SIZE } from 'shared/config/game/game.ts';
+import { useGameBoardStore } from 'shared/config/model/store/game-board-store.ts';
 
 interface URLImageProps {
 	url: string;
@@ -9,11 +9,14 @@ interface URLImageProps {
 
 export const URLImage: FC<URLImageProps> = ({ url }) => {
 	const [image] = useImage(url);
+	const tileSide = useGameBoardStore(
+		(state) => state.gameBoardOptions.tileSide,
+	);
 	return (
 		<Image
 			image={image}
-			width={TILE_SIZE}
-			height={TILE_SIZE}
+			width={tileSide}
+			height={tileSide}
 		/>
 	);
 };

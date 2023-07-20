@@ -20,6 +20,7 @@ export async function checkPlacement(
 		`${BACKEND_URL}/game/session/${sessionId}`,
 		{ tag, position },
 	);
+	console.log(response.data);
 	return {
 		valid: response.data.valid,
 		ended: response.data.ended,

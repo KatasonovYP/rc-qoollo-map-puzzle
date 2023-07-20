@@ -1,1 +1,1 @@
-export { Game } from './ui/game';
+export { GameAsync as Game } from './ui/game.async';

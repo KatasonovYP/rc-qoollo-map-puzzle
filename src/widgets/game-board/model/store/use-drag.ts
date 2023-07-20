@@ -1,17 +1,23 @@
 import type { KonvaEventObject } from 'konva/lib/Node';
-import { useGameBoardStore } from './game-board-store.ts';
-import { snap } from 'shared/lib/snap.ts';
-import { SAFE_POSITION, TILE_SIZE } from 'shared/config/game/game.ts';
+import { useGameBoardStore } from 'shared/config/model/store/game-board-store.ts';
+import {
+	SAFE_POSITION,
+	TILE_FEED_X_POSITION,
+} from 'shared/config/game/game-types.ts';
 import { checkPlacement } from 'shared/lib/check-placement.ts';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/route/route.tsx';
-import { getPosition } from 'shared/lib/get-position.ts';
+import { useSnap } from 'shared/config/model/store/use-snap.ts';
+import { useGetPosition } from '../../../../shared/config/model/store/use-get-position.ts';
 
 export function useDrag() {
 	const tiles = useGameBoardStore((state) => state.tiles);
 	const setTiles = useGameBoardStore((state) => state.setTiles);
 	const sessionId = useGameBoardStore((state) => state.sessionId);
+	const { tileSide } = useGameBoardStore((state) => state.gameBoardOptions);
 	const navigate = useNavigate();
+	const { getPosition } = useGetPosition();
+	const { snap } = useSnap();
 
 	function handleDragStart(event: KonvaEventObject<DragEvent>): void {
 		const id = event.target.id();
@@ -37,6 +43,7 @@ export function useDrag() {
 		const { x, y } = snap(event.target.x(), event.target.y());
 		const position = getPosition(x, y);
 		const { valid, ended } = await checkPlacement(sessionId, id, position);
+
 		if (valid) {
 			event.target.moveToBottom();
 		} else {
@@ -59,8 +66,8 @@ export function useDrag() {
 				} else if (tile.queue !== 0) {
 					return {
 						...tile,
-						x: TILE_SIZE * -2,
-						y: TILE_SIZE * (sequenceNumber - 1),
+						x: tileSide * TILE_FEED_X_POSITION,
+						y: tileSide * (sequenceNumber - 1),
 						queue: sequenceNumber++,
 						isDragging: false,
 					};

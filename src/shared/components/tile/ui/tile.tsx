@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { Group } from 'react-konva';
 import { URLImage } from 'shared/components/url-image';
 import { useDrag } from 'widgets/game-board/model/store/use-drag.ts';
-import { TILE_FEED_SIZE } from 'shared/config/game/game.ts';
+import { useGameBoardStore } from 'shared/config/model/store/game-board-store.ts';
 
 export interface TileProps {
 	id: string;
@@ -16,6 +16,9 @@ export interface TileProps {
 export const Tile: FC<TileProps> = (props) => {
 	const { id, x, y, url, isDragging, valid, queue } = props;
 	const { handleDragStart, handleDragEnd } = useDrag();
+	const tileFeedSize = useGameBoardStore(
+		(state) => state.gameBoardOptions.tileFeedSize,
+	);
 	return (
 		<Group
 			name={`tile ${id}`}
@@ -34,7 +37,7 @@ export const Tile: FC<TileProps> = (props) => {
 			shadowColor='black'
 			shadowBlur={10}
 			shadowOpacity={0.6}
-			visible={queue <= TILE_FEED_SIZE}
+			visible={queue <= tileFeedSize}
 		>
 			<URLImage url={url} />
 		</Group>

@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { useEffect } from 'react';
 import { Tile } from 'shared/components/tile';
-import { useGameBoardStore } from '../model/store/game-board-store.ts';
+import { useGameBoardStore } from 'shared/config/model/store/game-board-store.ts';
 import { GameBoardStage } from 'shared/components/game-board-stage';
 import { TilesFeed } from 'shared/components/tiles-feed';
 import { BuildBoard } from 'shared/components/build-board';

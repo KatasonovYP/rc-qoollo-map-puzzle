@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { Button } from 'shared/components/button';
+import { StartButton } from 'shared/components/start-button';
 import { Link } from 'react-router-dom';
 import { RoutePath } from 'shared/config/route/route.tsx';
 
@@ -13,10 +13,10 @@ export const Results: FC<ResultsProps> = () => {
 			<h1 className='text-4xl'>Congratulations!</h1>
 			<div className='flex gap-4'>
 				<Link to={RoutePath.game}>
-					<Button theme='start'>new game</Button>
+					<StartButton>new game</StartButton>
 				</Link>
 				<Link to={RoutePath.main}>
-					<Button theme='free'>home</Button>
+					<StartButton>home</StartButton>
 				</Link>
 			</div>
 		</div>

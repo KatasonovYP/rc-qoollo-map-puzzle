@@ -5,10 +5,13 @@ interface GameProps {
 	className?: string;
 }
 
-export const Game: FC<GameProps> = () => {
+const Game: FC<GameProps> = () => {
 	return (
 		<div>
 			<GameBoard />
 		</div>
 	);
 };
+
+// eslint-disable-next-line import/no-default-export
+export default Game;

@@ -1,17 +1,21 @@
 import type { FC, ReactNode } from 'react';
 import { Layer, Stage } from 'react-konva';
-import { TILE_SIZE } from 'shared/config/game/game.ts';
+import { useGameBoardStore } from 'shared/config/model/store/game-board-store.ts';
 
 interface GameBoardStageProps {
 	children: ReactNode;
 }
 
 export const GameBoardStage: FC<GameBoardStageProps> = ({ children }) => {
+	const { tileSide, gameBoardSides } = useGameBoardStore(
+		(state) => state.gameBoardOptions,
+	);
+
 	return (
 		<Stage
 			className={'stage'}
-			width={TILE_SIZE * 8}
-			height={TILE_SIZE * 6}
+			width={tileSide * gameBoardSides.x}
+			height={tileSide * gameBoardSides.y}
 		>
 			<Layer>{children}</Layer>
 		</Stage>

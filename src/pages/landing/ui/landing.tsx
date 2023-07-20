@@ -1,7 +1,6 @@
 import type { FC } from 'react';
 import { FlexContainer } from 'shared/components/flex-container/ui/flex-container.tsx';
 import { Logo } from 'shared/components/logo';
-import { Link } from 'shared/components/link';
 import { StartButton } from 'shared/components/start-button';
 import { DisabledButton } from 'shared/components/disabled-button';
 import { Text } from 'shared/components/text';
@@ -11,16 +10,18 @@ import MoscowMap from 'shared/assets/images/moscow_map.png';
 import BostonMap from 'shared/assets/images/boston_map.png';
 import RomeMap from 'shared/assets/images/rome_map.png';
 import ParisMap from 'shared/assets/images/paris _map.png';
+import { Link } from 'react-router-dom';
+import { RoutePath } from '../../../shared/config/route/route.tsx';
 
 export const Landing: FC = () => {
 	return (
 		<FlexContainer element='page'>
 			<FlexContainer element='header'>
-				<Logo></Logo>
+				<Logo />
 				<FlexContainer element='navigation'>
-					<Link>Maps</Link>
-					<Link>Leaderboards</Link>
-					<Link>About us</Link>
+					<Link to={RoutePath['game-options']}>Maps</Link>
+					<Link to={RoutePath['game-options']}>Leaderboards</Link>
+					<Link to={RoutePath['game-options']}>About us</Link>
 				</FlexContainer>
 				<AuthContainer />
 			</FlexContainer>
@@ -83,4 +84,3 @@ export const Landing: FC = () => {
 		</FlexContainer>
 	);
 };
-
