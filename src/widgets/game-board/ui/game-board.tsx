@@ -12,7 +12,7 @@ export const GameBoard: FC = () => {
 
 	useEffect(() => {
 		startGame();
-	}, []);
+	}, [startGame]);
 
 	return (
 		<GameBoardStage>

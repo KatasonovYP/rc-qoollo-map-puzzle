@@ -3,10 +3,10 @@ import { AuthButtonsContainer } from 'shared/components/auth-buttons-container';
 import { UserInfo } from 'shared/components/user-info';
 
 const parseURL = () => {
-	var url = window.location;
-	var urlSearch = new URLSearchParams(url.hash);
-	var accessToken = urlSearch.get('#access_token');
-	var userId = urlSearch.get('user_id');
+	const url = window.location;
+	const urlSearch = new URLSearchParams(url.hash);
+	const accessToken = urlSearch.get('#access_token');
+	const userId = urlSearch.get('user_id');
 
 	if (accessToken && userId) {
 		localStorage.setItem('access_token', accessToken);
@@ -39,8 +39,8 @@ const getAuthInfo = () => {
 		return false;
 	}
 
-	var script = document.createElement('script');
-	var get_request = `https://api.vk.com/method/users.get?user_ids=${userId}&fields=photo_100&access_token=${accessToken}&v=5.131&callback=vkCallBack`;
+	const script = document.createElement('script');
+	const get_request = `https://api.vk.com/method/users.get?user_ids=${userId}&fields=photo_100&access_token=${accessToken}&v=5.131&callback=vkCallBack`;
 	script.src = get_request;
 
 	document.getElementsByTagName('head')[0].appendChild(script);

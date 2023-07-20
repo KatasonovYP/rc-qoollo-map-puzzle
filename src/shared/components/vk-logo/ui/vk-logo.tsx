@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 import cls from './vk-logo.module.css';
 import VKIco from 'shared/assets/images/vk_logo.png';
 import classNames from 'classnames';
