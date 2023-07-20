@@ -4,7 +4,7 @@
 }
 
 .button {
-	align-items: flex-start;
+	align-items: center;
 	gap: 12px;
 }
 
@@ -29,10 +29,9 @@
 }
 
 .header {
-	max-width: 1024px;
+	width: 1024px;
 	justify-content: space-between;
 	align-items: center;
-	align-self: stretch;
 }
 
 .page {

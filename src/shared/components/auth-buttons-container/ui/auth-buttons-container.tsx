@@ -13,7 +13,7 @@ export const AuthButtonsContainer: FC = () => {
 					size='sm'
 					color='black'
 				>
-					Auth With VK
+					{' '}
 				</Text>
 			</DisabledButton>
 			<VKButton>
@@ -21,10 +21,11 @@ export const AuthButtonsContainer: FC = () => {
 					size='sm'
 					color='white'
 				>
-					Sign Up
+					Auth with
 				</Text>
 				<VKLogo />
 			</VKButton>
 		</FlexContainer>
 	);
 };
+
