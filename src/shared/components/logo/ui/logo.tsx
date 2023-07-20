@@ -11,7 +11,7 @@ export const Logo: FC<LogoProps> = (props) => {
 	const { className = '' } = props;
 
 	return (
-		<div className={classNames(cls.image, className)}>
+		<div className={classNames(cls.logo, className)}>
 			<img
 				src={LogoIco}
 				alt='Qoollo logo'
@@ -19,3 +19,4 @@ export const Logo: FC<LogoProps> = (props) => {
 		</div>
 	);
 };
+

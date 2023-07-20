@@ -1,8 +1,20 @@
 .text {
-	color: #000;
 	font-style: normal;
 	line-height: normal;
-    font-family: Montserrat;
+	font-family: Montserrat;
+}
+
+.black {
+	color: #000;
+}
+
+.white {
+	color: #fff;
+}
+
+.sm {
+	font-size: 16px;
+	font-weight: 400;
 }
 
 .md {
@@ -14,6 +26,4 @@
 	font-size: 64px;
 	font-weight: 600;
 }
-
-
 
