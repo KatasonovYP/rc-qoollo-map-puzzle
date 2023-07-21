@@ -13,5 +13,4 @@ const Game: FC<GameProps> = () => {
 	);
 };
 
-// eslint-disable-next-line import/no-default-export
 export default Game;

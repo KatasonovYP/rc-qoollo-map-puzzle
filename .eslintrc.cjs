@@ -91,4 +91,12 @@ module.exports = {
 		'unicorn/no-for-loop': 1,
 		// "unicorn/no-negated-condition": 0,
 	},
+    overrides: [
+        {
+            files: ['**/src/pages/**/*.tsx'],
+            rules: {
+                'import/no-default-export': 0,
+            },
+        },
+    ],
 };
