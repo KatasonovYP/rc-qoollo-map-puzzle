@@ -36,12 +36,19 @@ const getAuthInfo = () => {
 	const accessToken = localStorage.getItem('access_token');
 	const userId = localStorage.getItem('user_id');
 
-	if ((accessToken && userId) === null) {
+	if (accessToken === null || userId === null) {
 		return false;
 	}
 
 	const script = document.createElement('script');
-	script.src = `https://api.vk.com/method/users.get?user_ids=${userId}&fields=photo_100&access_token=${accessToken}&v=5.131&callback=vkCallBack`;
+	const params = new URLSearchParams({
+		user_ids: userId,
+		fields: 'photo_100',
+		access_token: accessToken,
+		v: '5.131',
+		callback: 'vkCallBack',
+	});
+	script.src = `https://api.vk.com/method/users.get?${params}`;
 
 	document.getElementsByTagName('head')[0].appendChild(script);
 };
