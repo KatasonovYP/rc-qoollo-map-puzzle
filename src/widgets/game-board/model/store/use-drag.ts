@@ -8,7 +8,8 @@ import { checkPlacement } from 'shared/lib/check-placement.ts';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/route/route.tsx';
 import { useSnap } from 'shared/config/model/store/use-snap.ts';
-import { useGetPosition } from '../../../../shared/config/model/store/use-get-position.ts';
+import { useGetPosition } from 'shared/config/model/store/use-get-position.ts';
+import { postGame } from 'shared/lib/post-game.ts';
 
 export function useDrag() {
 	const tiles = useGameBoardStore((state) => state.tiles);
@@ -42,7 +43,7 @@ export function useDrag() {
 		event.target.moveToTop();
 		const { x, y } = snap(event.target.x(), event.target.y());
 		const position = getPosition(x, y);
-		const { valid, ended } = await checkPlacement(sessionId, id, position);
+		const { valid, gameId } = await checkPlacement(sessionId, id, position);
 
 		if (valid) {
 			event.target.moveToBottom();
@@ -78,8 +79,8 @@ export function useDrag() {
 				};
 			}),
 		);
-		if (ended) {
-			// deleteSession(sessionId);
+		if (gameId) {
+			await postGame(gameId);
 			navigate(RoutePath.results);
 		}
 	}

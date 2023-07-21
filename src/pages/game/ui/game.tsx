@@ -8,6 +8,7 @@ interface GameProps {
 const Game: FC<GameProps> = () => {
 	return (
 		<div>
+			{/*<AboutGameStartSlider />*/}
 			<GameBoard />
 		</div>
 	);

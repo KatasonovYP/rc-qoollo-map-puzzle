@@ -1,0 +1,21 @@
+.mapSlide {
+}
+
+.backgroundImage {
+  position: absolute;
+  height: max(100vh, 100vw);
+  width: max(100vh, 100vw);
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  @apply bg-black;
+  @apply bg-opacity-50;
+  filter: brightness(30%) blur(10px);
+}
+
+.image {
+  position: relative;
+  @apply rounded-2xl;
+  height: min(80vh, 90vw);
+  width: min(80vh, 90vw);
+}

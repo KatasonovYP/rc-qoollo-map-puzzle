@@ -1,7 +1,7 @@
 import type { TileProps } from 'shared/components/tile';
 import { create } from 'zustand';
 import type { MapOptions } from 'shared/config/api/api-types';
-import { createJSONStorage, persist } from 'zustand/middleware';
+import { persist } from 'zustand/middleware';
 import type { GameBoardOptions } from 'shared/config/game/game-types.ts';
 import { initGame } from 'shared/lib/init-game.ts';
 
@@ -12,6 +12,7 @@ interface GameBoardState {
 	startGame: () => void;
 	mapOptions: MapOptions;
 	setMapOptions: (mapOptions: MapOptions) => void;
+	previewMapId: string;
 	gameBoardOptions: GameBoardOptions;
 	setGameBoardOptions: (gameBoardOptions: GameBoardOptions) => void;
 }
@@ -21,6 +22,7 @@ export const useGameBoardStore = create(
 		(set, get): GameBoardState => ({
 			tiles: [],
 			sessionId: '',
+			previewMapId: '',
 			mapOptions: {
 				api: 'osm',
 				geotag: 'Москва',
@@ -38,11 +40,17 @@ export const useGameBoardStore = create(
 			},
 
 			startGame: async () => {
-				const { tiles, sessionId, tileSide, buildBoardSide } =
-					await initGame(get().mapOptions);
+				const {
+					tiles,
+					sessionId,
+					tileSide,
+					buildBoardSide,
+					previewMapId,
+				} = await initGame(get().mapOptions);
 				set({
 					tiles,
 					sessionId,
+					previewMapId,
 					gameBoardOptions: {
 						buildBoardSide,
 						tileFeedSize: buildBoardSide,
@@ -55,21 +63,13 @@ export const useGameBoardStore = create(
 				});
 			},
 
-			setTiles: (tiles: TileProps[]) => {
-				set({ tiles });
-			},
+			setTiles: (tiles: TileProps[]) => set({ tiles }),
 
-			setMapOptions: (mapOptions) => {
-				set({ mapOptions });
-			},
+			setMapOptions: (mapOptions: MapOptions) => set({ mapOptions }),
 
-			setGameBoardOptions: (gameBoardOptions) => {
-				set({ gameBoardOptions });
-			},
+			setGameBoardOptions: (gameBoardOptions: GameBoardOptions) =>
+				set({ gameBoardOptions }),
 		}),
-		{
-			name: 'qoollo-puzzle-map',
-			storage: createJSONStorage(() => localStorage),
-		},
+		{ name: 'qoollo-puzzle-map' },
 	),
 );

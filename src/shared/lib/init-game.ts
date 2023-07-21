@@ -2,13 +2,21 @@ import axios from 'axios';
 import { BACKEND_URL } from 'shared/config/api/urls.ts';
 import type { TileProps } from 'shared/components/tile';
 import type { MapOptions } from 'shared/config/api/api-types.ts';
-import { checkPlacement } from './check-placement.ts';
 
 interface initGameReturnType {
 	sessionId: string;
 	tiles: TileProps[];
 	tileSide: number;
 	buildBoardSide: number;
+	previewMapId: string;
+}
+
+interface mapCallReturnType {
+	id: string;
+	size: number;
+	previewId: string;
+	geotag: string;
+	scale: string;
 }
 
 export async function initGame({
@@ -21,8 +29,12 @@ export async function initGame({
 		const mapResponse = await axios.get(`${BACKEND_URL}/map`, {
 			params: { api, geotag, scale, size },
 		});
-		const mapId: string = mapResponse.data[0].id;
-		const buildBoardSide: number = mapResponse.data[0].size;
+		const {
+			id: mapId,
+			size: buildBoardSide,
+			previewId: previewMapId,
+		}: mapCallReturnType = mapResponse.data[0];
+
 		const tileSide: number = Math.round(500 / buildBoardSide);
 
 		const sessionResponse = await axios.put(
@@ -57,9 +69,13 @@ export async function initGame({
 			id: startTile.id,
 		});
 
-		await checkPlacement(sessionId, startTile.id, startTile.position);
-
-		return { tiles, sessionId, tileSide, buildBoardSide };
+		return {
+			tiles,
+			sessionId,
+			tileSide,
+			buildBoardSide,
+			previewMapId,
+		};
 	} catch (error) {
 		console.error(error);
 		throw new Error('init error');

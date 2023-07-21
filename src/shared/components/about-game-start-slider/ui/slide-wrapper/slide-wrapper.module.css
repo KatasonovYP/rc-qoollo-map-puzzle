@@ -1,0 +1,15 @@
+.slideWrapper {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  text-align: center;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  @apply font-montserrat bg-white text-black text-6xl;
+}
