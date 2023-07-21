@@ -6,7 +6,7 @@ export const UserLogo: FC = () => {
 	const userLogoUrl = localStorage.getItem('user_photo') || cameraUrl;
 	return (
 		<img
-			className={cls.user_logo}
+			className={cls.userLogo}
 			src={userLogoUrl}
 			alt='User photo'
 		></img>
