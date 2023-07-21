@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 import cls from './start-button.module.css';
 
 interface StartButtonProps {

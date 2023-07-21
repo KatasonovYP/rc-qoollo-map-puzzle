@@ -1,1 +1,1 @@
-export { HeroImage } from './ui/hero-image'
+export { HeroImage } from './ui/hero-image';

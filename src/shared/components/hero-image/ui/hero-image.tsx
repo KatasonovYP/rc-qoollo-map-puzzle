@@ -1,4 +1,4 @@
-import { FC, ImgHTMLAttributes } from 'react';
+import type { FC, ImgHTMLAttributes } from 'react';
 import cls from './hero-image.module.css';
 
 

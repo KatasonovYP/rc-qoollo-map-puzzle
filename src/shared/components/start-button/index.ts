@@ -1,1 +1,1 @@
-export { StartButton } from './ui/start-button'
+export { StartButton } from './ui/start-button';
